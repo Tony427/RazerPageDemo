@@ -1,4 +1,5 @@
 ﻿@page
+@* 這個cshtml指定參考FormTestModel *@
 @model RazorPagesMovie.Pages.FormTestModel
 @{
     Layout = null;
@@ -14,11 +15,15 @@
     <form method="POST">
         <div>
             <span>@Model.Now</span>
+            @* asp-for => 取得目前model的Now，不會即時更新，要觸發才會 *@
             <input type="hidden" asp-for="Now" />
             ，姓名：
             <input asp-for="Name" placeholder="請輸入姓名" autocomplete="off" />
         </div>
         <div>
+            @* asp-page-handler跟以前web form動作有點像 *@
+            @* 以EngGreet為例子，則Model設定OnPostEngGreet 或OnPostEngGreetAsync *@
+            @* Post的路徑會是/FormTest?handler=EngGreet 再由後端接受處理*@
             <button type="submit" asp-page-handler="EngGreet">
                 Say Hello
             </button>
